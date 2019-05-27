@@ -38,7 +38,7 @@ public class Client
         myself = d.readInt("myself");
         playerSize = d.readInt("playerSize");
         grid.playerSize = playerSize;
-        grid.draw(playerSize + 1);
+        grid.draw();
         canPlay();
     }
     
@@ -52,7 +52,7 @@ public class Client
         Boolean canPlay = d.readBoolean("canPlay");
         if (canPlay) {
             // long weil max => 8 Züge!
-            long[] saveLongArr = d.readLongs("saveLongArr");
+            String[] saveLongArr = d.readStrings("saveStringArr");
             for (int i : new int[playerSize]) {
                 
                 System.out.println(saveLongArr[i] );

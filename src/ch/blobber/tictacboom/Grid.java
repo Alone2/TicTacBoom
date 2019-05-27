@@ -85,18 +85,22 @@ public class Grid implements KeyDownListener
 
     }
     
-    public void drawDots(int[] code, boolean firsttime)
+    public void drawDots(String code, boolean firsttime)
     {
         if (firsttime) {
             spaceTaken = new int[(int) Math.pow(playerSize + 1, 2)];
         }
-        for (int i = 0; i < code.length; i++)
-        {
-            code[i]
-        }
+        
     }
 
-    private boolean 
+    private int[] getToTheRightPlace(String cords) {
+         Float balance = view.getWidthDp() / (playerSize + 1);
+         int[] xy = new int[2];
+         xy[0] = (int) (balance * cords.charAt(0) + balance/2);
+         xy[1] = (int) (balance * cords.charAt(1) + balance/2);
+         
+         return xy;
+    }
     
     @Override
     public void onKeyDown(KeyEvent ke)
