@@ -90,14 +90,20 @@ public class Grid implements KeyDownListener
         if (firsttime) {
             spaceTaken = new int[(int) Math.pow(playerSize + 1, 2)];
         }
+        String newCode[] = code.split("9");
+        for (int i = 0; i < newCode.length; i++)
+        {
+            int[] xy = new int[2];
+            newCode[i].charAt(0)
+        }
         
     }
 
-    private int[] getToTheRightPlace(String cords) {
+    private int[] rightPlace(int[] cords) {
          Float balance = view.getWidthDp() / (playerSize + 1);
          int[] xy = new int[2];
-         xy[0] = (int) (balance * cords.charAt(0) + balance/2);
-         xy[1] = (int) (balance * cords.charAt(1) + balance/2);
+         xy[0] = (int) (balance * cords[0] + balance/2);
+         xy[1] = (int) (balance * cords[1]  + balance/2);
          
          return xy;
     }
