@@ -94,7 +94,8 @@ public class Grid implements KeyDownListener
         for (int i = 0; i < newCode.length; i++)
         {
             int[] xy = new int[2];
-            newCode[i].charAt(0)
+            xy[0] = newCode[i].charAt(0);
+            xy[1] = newCode[i].charAt(1);
         }
         
     }

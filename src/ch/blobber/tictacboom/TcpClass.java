@@ -25,13 +25,17 @@ public class TcpClass implements MessageReceivedListener
     {
         c = new TcpConnection();
         this.client = client;
-        if (c.open(ip, port)) {
+        
+        c.open(ip, port);
+                
+        if (c.isOpen()) {
+            System.out.println("Tries to connect..");
             Data data = new Data();
             data.writeString("From", "isHere");
         
             c.sendData(data);
         } else {
-            // error
+            System.err.println("Error: Connection cannot be established");
         }
 
     }
@@ -52,9 +56,6 @@ public class TcpClass implements MessageReceivedListener
             client.canPlayReturn(d);
         if ("doMove".equals(from))
             client.doMoveReturn(d);
-        if ("connect".equals(from))
-            client.connectReturn(d);
-                
            
     }
 

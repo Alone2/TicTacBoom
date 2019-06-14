@@ -45,6 +45,7 @@ public class Client
     public void canPlay() {
         Data data = new Data();
         data.writeString("From", "canPlay");
+        data.writeString("myself", "canPlay");
         tcp.sendData(data);
     }
     
@@ -52,13 +53,15 @@ public class Client
         Boolean canPlay = d.readBoolean("canPlay");
         if (canPlay) {
             // long weil max => 8 Züge!
-            String[] saveLongArr = d.readStrings("saveStringArr");
-            for (int i : new int[playerSize]) {
-                
-                System.out.println(saveLongArr[i] );
-            }
+            
             
         }
+        String[] saveLongArr = d.readStrings("saveStringArr");
+        for (int i : new int[playerSize]) {
+                
+            System.out.println(saveLongArr[i] );
+        }
+            
         try
         {
             Thread.sleep(1000);
@@ -67,6 +70,7 @@ public class Client
         {
             System.err.println(e);
         }
+        canPlay();
         
     }
     
@@ -75,10 +79,6 @@ public class Client
     }
     
     public void doMoveReturn(Data d) {
-        
-    }
-    
-    private void hasWon(Data d) {
         
     }
     
