@@ -4,6 +4,7 @@ package ch.blobber.tictacboom;
 import ch.jeda.ui.Canvas;
 import ch.jeda.ui.Color;
 import ch.jeda.ui.Element;
+import java.util.Random;
 
 /**
  *
@@ -15,17 +16,18 @@ public class Circle extends Element
     double radius;
     Color color;
     
-    protected Circle(double x, double y, double width) {
-        this.setPosition(x, y);
+    protected Circle(double x, double y, double width, long seed) {
         this.radius = width/2;
-        color = getRandomColor();
+        this.setPosition(x - radius, y - radius);
+        color = getRandomColor(seed);
         this.setDrawOrder(0);
     }
     
-    private Color getRandomColor() {
-        int r = (int) (Math.random() * 255);
-        int g = (int) (Math.random() * 255);
-        int b = (int) (Math.random() * 255);
+    private Color getRandomColor(long seed) {
+        Random rand = new Random(seed);
+        int r = (int) (rand.nextDouble() * 255);
+        int g = (int) (rand.nextDouble() * 255);
+        int b = (int) (rand.nextDouble() * 255);
         
         return new Color(r,g,b);
     }

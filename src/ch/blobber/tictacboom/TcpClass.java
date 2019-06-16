@@ -2,6 +2,7 @@ package ch.blobber.tictacboom;
 
 import ch.jeda.Connection;
 import ch.jeda.Data;
+import ch.jeda.Jeda;
 import ch.jeda.TcpConnection;
 import ch.jeda.TcpServer;
 import ch.jeda.event.ConnectionAcceptedListener;
@@ -33,7 +34,9 @@ public class TcpClass implements MessageReceivedListener
             Data data = new Data();
             data.writeString("From", "isHere");
         
+            Jeda.addEventListener(this);
             c.sendData(data);
+            
         } else {
             System.err.println("Error: Connection cannot be established");
         }
@@ -41,14 +44,19 @@ public class TcpClass implements MessageReceivedListener
     }
     
     public void sendData(Data msg) {
+        System.out.println("Question: " + msg.toString());
         c.sendData(msg);
+    }
+    
+    public void close() {
+        c.close();
     }
 
     @Override
     public void onMessageReceived(MessageEvent me)
     {
         Data d = me.getData();
-
+        System.out.println("Answer: " + me.getLine());
         String from = d.readString("From");
         if ("isHere".equals(from))
             client.connectReturn(d);
