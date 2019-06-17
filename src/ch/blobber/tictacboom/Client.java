@@ -72,7 +72,6 @@ public class Client
         }
         String[] saveLongArr = d.readStrings("saveStringArr");
         for (int i = 0; i < playerSize; i++) {
-            System.err.println(i);
             if (saveLongArr[i] != null) {
                 grid.drawDots(saveLongArr[i], i);
             }          
